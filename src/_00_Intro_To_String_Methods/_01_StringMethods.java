@@ -1,5 +1,6 @@
 package _00_Intro_To_String_Methods;
 
+import java.util.Arrays;
 import java.util.Base64;
 
 /*
@@ -44,7 +45,7 @@ public class _01_StringMethods {
 	// to underscores
 	public static String formatSpaces(String s) {
 		if (s.contains("underscores")) {
-			 s = s.replace(' ', '_');
+			s = s.replace(' ', '_');
 		}
 		return s;
 	}
@@ -54,17 +55,42 @@ public class _01_StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-		return null;
+		s1 = s1.trim();
+		s2 = s2.trim();
+		s3 = s3.trim();
+		String[] splits = s1.split(" ");
+		String[] slits = s2.split(" ");
+		String[] sits = s3.split(" ");
+		if (splits[1].compareTo(slits[1]) < 0 && splits[1].compareTo(sits[1]) < 0) {
+			return s1;
+		} else if (slits[1].compareTo(splits[1]) < 0 && slits[1].compareTo(sits[1]) < 0) {
+			return s2;
+		} else if (sits[1].compareTo(splits[1]) < 0 && sits[1].compareTo(slits[1]) < 0) {
+			return s3;
+		} else {
+			return null;
+		}
 	}
 
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		return 0;
+		int total = 0;
+		for (int i = 0; i < s.length(); i++) {
+			boolean isNumb = Character.isDigit(s.charAt(i));
+			if (isNumb) {
+				int news = Integer.parseInt(s.substring(i, i + 1));
+				total = total + news;
+			}
+		}
+		return total;
 	}
 
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		return 0;
+		String removedSubstring = s.replace(substring, "");
+		int numOccurances = (s.length() - removedSubstring.length()) / substring.length();
+
+		return numOccurances;
 	}
 
 	// Call Utilities.encrypt at the bottom of this file to encrypt String s
@@ -116,4 +142,5 @@ class Utilities {
 		}
 		return new String(b);
 	}
+
 }

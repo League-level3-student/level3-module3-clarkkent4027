@@ -47,7 +47,7 @@ public class _00_StringMethodsDemo {
         // Finding the index of the first matching character
         int index = str.indexOf('o');
         System.out.println("\'o\' 1st appearance at index: " + index + " in '" + str + "'");
-        index = str.indexOf('o', index+1);
+        index = str.indexOf('o', index + 1);
         System.out.println("\'o\' 2nd appearance at index: " + index + " in '" + str + "'");
         
         // Replacing ALL characters from a string
