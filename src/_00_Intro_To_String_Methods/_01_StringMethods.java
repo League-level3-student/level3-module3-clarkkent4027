@@ -95,32 +95,92 @@ public class _01_StringMethods {
 
 	// Call Utilities.encrypt at the bottom of this file to encrypt String s
 	public static String encrypt(String s, char key) {
-		return null;
+
+		return Utilities.encrypt(s.getBytes(), (byte) key);
 	}
 
 	// Call Utilities.decrypt at the bottom of this file to decrypt the
 	// cyphertext (encrypted text)
 	public static String decrypt(String s, char key) {
-		return null;
+
+		return Utilities.decrypt(s, (byte) key);
 	}
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		int numburr = 0;
+		String split[] = s.split(" ");
+		for (int i = 0; i < split.length; i++) {
+			if (split[i].endsWith(substring)) {
+				numburr++;
+			}
+		}
+		return numburr;
 	}
 
 	// Given String s, return the number of characters between the first
 	// occurrence of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
+		int numOfChars = 0;
+		int numOfOccurances = 0;
+		int index = s.indexOf(substring);
+		while (index != -1) {
+			numOfOccurances++;
+			index = s.indexOf(substring, index + substring.length());
+		}
+		if (numOfOccurances != s.length() + 1) {
+			for (int i = s.indexOf(substring) + substring.length(); i < s.length() - substring.length(); i++) {
+				numOfChars = numOfChars + 1;
+			}
+
+			return numOfChars;
+		}
 		return 0;
 	}
 
 	// Return true if String s is a palindrome
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
+	// public static boolean palindrome(String s) {
+	// s.replaceAll(" ", "");
+	// s.replaceAll("?", "");
+	// s.replaceAll("!", "");
+	// s.replaceAll(".", "");
+	// s.replaceAll(":", "");
+	// s.replaceAll("-", "");
+	// s.replaceAll(",", "");
+	// int sLength = Integer.parseInt(s);
+	// for (int i = 0; i < sLength; i++) {
+	// for (int j = s.length(); j > 0; j--) {
+	// if (i != j) {
+	// return false;
+	// }
+	//
+	// }
+	// }
+	// return true;
+	// }
 	public static boolean palindrome(String s) {
+		String s1 = s.replaceAll(" ", "");
+		String s2 = s1.replaceAll(",", "");
+		String s3 = s2.replaceAll("-", "");
+		String s4 = s3.replaceAll("\\.", "");
+		String s5 = s4.replaceAll(":", "");
+		String s6 = s5.replaceAll("\\?", "");
+		String s7 = s6.toLowerCase();
+		System.out.println(s7);
+		int sLength = s7.length();
+		for (int i = 0; i < s7.length(); i++) {
+			int secondHalf = (sLength - 1);
+			System.out.println(s7.charAt(i));
+			System.out.println(s7.length());
+			System.out.println(s7.charAt(secondHalf));
+			if (s7.charAt(i) != s7.charAt(secondHalf - i)) {
+				return false;
+			}
+		}
 		return true;
 	}
 }
