@@ -17,14 +17,24 @@ public class _01_TheWave {
 	 */
 
 	public static ArrayList<String> wave(String str) {
+		String lowerS = str.toLowerCase();
+		String[] arrayS = str.split("");
+		ArrayList<String> wave = new ArrayList<String>();
 
-		for (int i = 0; i < wave(str).size(); i++) {
-			wave(str).get(i).trim();
-			str.replace(" ", "");
-			String upper = str.substring(0, i) + Character.toUpperCase(i) + str.substring(i + 1);
-			wave(str).add(upper);
+		for (int i = 0; i < str.length(); i++) {
+			StringBuilder builder = new StringBuilder(lowerS);
+			if (arrayS[i].equalsIgnoreCase(" ")) {
+
+			} else {
+				builder.deleteCharAt(i);
+				builder.insert(i, arrayS[i].toUpperCase());
+				System.out.println(builder.toString());
+				String waveSequence = builder.toString();
+				wave.add(waveSequence);
+			}
+
 		}
 
-		return wave(str); 
+		return wave;
 	}
 }
